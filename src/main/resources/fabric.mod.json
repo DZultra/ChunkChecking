@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "chunkchecking",
+	"version": "${version}",
+	"name": "ChunkChecking",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/chunkchecking/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.dzultra.chunkchecking.ChunkChecking"
+		],
+		"client": [
+			"net.dzultra.chunkchecking.ChunkCheckingClient"
+		],
+		"fabric-datagen": [
+			"net.dzultra.chunkchecking.ChunkCheckingDataGenerator"
+		]
+	},
+	"mixins": [
+		"chunkchecking.mixins.json",
+		{
+			"config": "chunkchecking.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
