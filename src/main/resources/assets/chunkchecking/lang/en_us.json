@@ -1,0 +1,7 @@
+{
+  "message.chunkchecking.entering_new_chunk_message": "New Chunk:",
+  "message.chunkchecking.enable_note.already_enabled": "|- Checker already enabled! -|",
+  "message.chunkchecking.enable_note.enabling": "|- Checker enabled! -|",
+  "message.chunkchecking.enable_note.already_disabled": "|- Checker already disabled! -|",
+  "message.chunkchecking.enable_note.disabling": "|- Checker disabled! -|"
+}
