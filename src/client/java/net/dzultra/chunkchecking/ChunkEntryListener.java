@@ -1,9 +1,6 @@
 package net.dzultra.chunkchecking;
 
-import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -30,8 +27,6 @@ public class ChunkEntryListener {
         }
 
     }
-
-    private static String lastChatMessage = "";
 
     private void onPlayerEnterNewChunk(ChunkPos newChunkPos) {
         MutableText chatmessage = Text.literal("\n").append(ENTERING_NEW_CHUNK_MESSAGE_KEY).append(Text.literal(" (" + newChunkPos.x + ", " + newChunkPos.z + ")\n"));
