@@ -31,5 +31,6 @@ public class ChunkEntryListener {
     private void onPlayerEnterNewChunk(ChunkPos newChunkPos) {
         MutableText chatmessage = Text.literal("\n").append(ENTERING_NEW_CHUNK_MESSAGE_KEY).append(Text.literal(" (" + newChunkPos.x + ", " + newChunkPos.z + ")\n"));
         MinecraftClient.getInstance().player.sendMessage(chatmessage.setStyle(Style.EMPTY.withColor(Formatting.GREEN)), false);
+        MinecraftClient.getInstance().getNetworkHandler().sendChatCommand("checkchunk");
     }
 }
