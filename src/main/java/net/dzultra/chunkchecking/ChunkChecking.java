@@ -13,6 +13,6 @@ public class ChunkChecking implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("ChunkChecking Initialized");
+		LOGGER.info("[ChunkChecking] Initialized");
 	}
 }

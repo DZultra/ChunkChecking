@@ -3,5 +3,8 @@
   "message.chunkchecking.enable_note.already_enabled": "|- Checker already enabled! -|",
   "message.chunkchecking.enable_note.enabling": "|- Checker enabled! -|",
   "message.chunkchecking.enable_note.already_disabled": "|- Checker already disabled! -|",
-  "message.chunkchecking.enable_note.disabling": "|- Checker disabled! -|"
+  "message.chunkchecking.enable_note.disabling": "|- Checker disabled! -|",
+  "message.chunkchecking.error_in_writing_process_message": "|- Error in Writing Process: Please reenter the last few chunks! -|",
+  "message.chunkchecking.dump_data_node.dumped_data": "|- Data has been dumped to Json Files -|",
+  "message.chunkchecking.dump_data_node.checker_not_running": "|- Checker is currently not running; No Data to dump -|"
 }

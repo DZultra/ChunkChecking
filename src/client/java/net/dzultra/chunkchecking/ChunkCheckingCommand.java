@@ -19,11 +19,13 @@ public class ChunkCheckingCommand {
     public static final LiteralArgumentBuilder<FabricClientCommandSource> COMMAND = ClientCommandManager.literal("checker");
     public static final LiteralArgumentBuilder<FabricClientCommandSource> ENABLE_NODE = ClientCommandManager.literal("enable");
     public static final LiteralArgumentBuilder<FabricClientCommandSource> DISABLE_NODE = ClientCommandManager.literal("disable");
+    public static final LiteralArgumentBuilder<FabricClientCommandSource> DUMP_DATA_NODE = ClientCommandManager.literal("dump_data");
 
     public static LiteralArgumentBuilder<FabricClientCommandSource> getCommand() {
         return COMMAND
                 .then(ENABLE_NODE)
-                .then(DISABLE_NODE);
+                .then(DISABLE_NODE)
+                .then(DUMP_DATA_NODE);
     }
 
     static {
@@ -31,12 +33,18 @@ public class ChunkCheckingCommand {
             if (isRunning) {
                 MutableText message = Text.translatable("message.chunkchecking.enable_note.already_enabled");
                 MinecraftClient.getInstance().player.sendMessage(Text.literal("\n").append(message).append(Text.literal("\n"))
-                        .setStyle(Style.EMPTY.withColor(Formatting.RED).withBold(true)), false);
+                        .setStyle(Style.EMPTY
+                                .withColor(Formatting.RED)
+                                .withBold(true)
+                        ), false);
                 return 1;
             }
             MutableText message = Text.translatable("message.chunkchecking.enable_note.enabling");
             MinecraftClient.getInstance().player.sendMessage(Text.literal("\n").append(message).append(Text.literal("\n"))
-                    .setStyle(Style.EMPTY.withColor(Formatting.GREEN).withBold(true)), false);
+                    .setStyle(Style.EMPTY
+                            .withColor(Formatting.GREEN)
+                            .withBold(true)
+                    ), false);
             isRunning = true;
             return 1;
         });
@@ -47,13 +55,42 @@ public class ChunkCheckingCommand {
             if (!isRunning) {
                 MutableText message = Text.translatable("message.chunkchecking.enable_note.already_disabled");
                 MinecraftClient.getInstance().player.sendMessage(Text.literal("\n").append(message).append(Text.literal("\n"))
-                        .setStyle(Style.EMPTY.withColor(Formatting.RED).withBold(true)), false);
+                        .setStyle(Style.EMPTY
+                                .withColor(Formatting.RED)
+                                .withBold(true)
+                        ), false);
                 return 1;
             }
             MutableText message = Text.translatable("message.chunkchecking.enable_note.disabling");
             MinecraftClient.getInstance().player.sendMessage(Text.literal("\n").append(message).append(Text.literal("\n"))
-                    .setStyle(Style.EMPTY.withColor(Formatting.GREEN).withBold(true)), false);
+                    .setStyle(Style.EMPTY
+                            .withColor(Formatting.GREEN)
+                            .withBold(true)
+                    ), false);
             isRunning = false;
+            DataBaseManager.getInstance().writeInFile();
+            return 1;
+        });
+    }
+
+    static {
+        DUMP_DATA_NODE.executes(context -> {
+            if (!isRunning) {
+                MutableText message = Text.translatable("message.chunkchecking.dump_data_node.checker_not_running");
+                MinecraftClient.getInstance().player.sendMessage(Text.literal("\n").append(message).append(Text.literal("\n"))
+                        .setStyle(Style.EMPTY
+                                .withColor(Formatting.RED)
+                                .withBold(true)
+                        ), false);
+                return 1;
+            }
+            MutableText message = Text.translatable("message.chunkchecking.dump_data_node.dumped_data");
+            MinecraftClient.getInstance().player.sendMessage(Text.literal("\n").append(message).append(Text.literal("\n"))
+                    .setStyle(Style.EMPTY
+                            .withColor(Formatting.GREEN)
+                            .withBold(true)
+                    ), false);
+            DataBaseManager.getInstance().writeInFile();
             return 1;
         });
     }
